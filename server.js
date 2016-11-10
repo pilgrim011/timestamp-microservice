@@ -13,7 +13,7 @@ app.get('/:query', function(request, response) {
   var naturalTime = moment.unix(Number(timestamp)).format('MMMM D, YYYY');
   var unixTime = timestamp;
   
-  var result = { "unix": unixTime, "natural": naturalTime };
+  var result = { "unix": parseInt(unixTime,10), "natural": naturalTime };
   
       response.send(result);
       
@@ -24,7 +24,7 @@ app.get('/:query', function(request, response) {
   naturalTime = moment(timestamp).format('MMMM D, YYYY');
   unixTime = Number(new Date(timestamp).getTime() / 1000).toFixed(0);
   
-  result = { "unix": unixTime, "natural": naturalTime };
+  result = { "unix": parseInt(unixTime,10), "natural": naturalTime };
   
       response.send(result);
       
