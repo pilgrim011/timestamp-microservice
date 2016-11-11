@@ -3,7 +3,6 @@ var app = express();
 var moment = require("moment");
 var path = require('path');
 var PORT = process.env.PORT || 8080;
-
 app.use(express.static(path.join(__dirname, "public")));
 app.get('/:query', function(request, response) {
   var timestamp = request.params.query;
@@ -21,7 +20,8 @@ app.get('/:query', function(request, response) {
   }
   else if (moment(timestamp).isValid()){
     console.log("string");
-  naturalTime = moment(timestamp).format('MMMM D, YYYY');
+    var parseit = moment(timestamp, 'MMMM D, YYYY');
+  naturalTime = moment(parseit).format('MMMM D, YYYY');
   unixTime = Number(new Date(timestamp).getTime() / 1000).toFixed(0);
   
   result = { "unix": parseInt(unixTime,10), "natural": naturalTime };
